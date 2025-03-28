@@ -17,8 +17,9 @@
     header { background: #003366; color: #fff; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
     nav { display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.5rem; font-weight: bold; }
-    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
     .nav-links a { color: #fff; text-decoration: none; font-size: 1rem; }
+    .nav-links a img { vertical-align: middle; margin-right: 5px; border-radius: 50%; width: 30px; height: 30px; }
     .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
     
     /* Hero Section */
@@ -42,12 +43,6 @@
     .testimonial { max-width: 800px; margin: 0 auto 1.5rem; padding: 1.5rem; border-left: 4px solid #CC0000; background: #fff; }
     .testimonial p { font-style: italic; }
     .testimonial cite { display: block; margin-top: 1rem; text-align: right; font-weight: bold; }
-    
-    /* Agent Section */
-    .agent { padding: 4rem 1rem; background: #fff; }
-    .agent details { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
-    .agent summary { font-size: 1.5rem; font-weight: bold; cursor: pointer; }
-    .agent-details { margin-top: 1rem; text-align: center; }
     
     /* Social Media Section */
     .social { padding: 4rem 1rem; text-align: center; background: #fff; }
@@ -115,6 +110,9 @@
           <a href="#services">Services</a>
           <a href="#testimonials">Testimonials</a>
           <a href="#social">Social</a>
+          <a href="#" onclick="openAboutModal()">
+            <img src="https://raw.githubusercontent.com/anandvip/rekha-canada/refs/heads/main/WhatsApp%20Image%202025-03-28%20at%2014.08.23.jpeg" alt="Agent Rekha"> About
+          </a>
           <a href="#" onclick="openModal()">Contact</a>
         </div>
       </nav>
@@ -174,18 +172,6 @@
     </div>
   </section>
   
-  <section class="agent">
-    <div class="container">
-      <details>
-        <summary>Meet Rekha - Your Trusted Insurance Agent</summary>
-        <div class="agent-details">
-          <img src="https://raw.githubusercontent.com/anandvip/rekha-canada/refs/heads/main/WhatsApp%20Image%202025-03-28%20at%2014.08.23.jpeg" alt="Agent Rekha" style="max-width:200px; display:block; margin:1rem auto;">
-          <p>Rekha brings over 15 years of experience in the insurance industry, specializing in personalized solutions across Canada. Her dedication to client satisfaction and in-depth market knowledge make her the go-to expert for reliable coverage and exceptional service.</p>
-        </div>
-      </details>
-    </div>
-  </section>
-  
   <section class="social" id="social">
     <div class="container">
       <h2>Follow Us on Social Media</h2>
@@ -238,6 +224,16 @@
     </div>
   </div>
   
+  <!-- About Agent Modal -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeAboutModal()">&times;</span>
+      <h2>About Agent Rekha</h2>
+      <img src="https://raw.githubusercontent.com/anandvip/rekha-canada/refs/heads/main/WhatsApp%20Image%202025-03-28%20at%2014.08.23.jpeg" alt="Agent Rekha" style="max-width:200px; display:block; margin:1rem auto;">
+      <p>Rekha brings over 15 years of experience in the insurance industry, specializing in personalized solutions across Canada. Her dedication to client satisfaction and in-depth market knowledge make her the go-to expert for reliable coverage and exceptional service.</p>
+    </div>
+  </div>
+  
   <script>
     // Mobile Menu Toggle
     document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
@@ -257,7 +253,7 @@
       });
     });
     
-    // Open and Close Modal Functions
+    // Contact Modal Functions
     function openModal() {
       document.getElementById('contactModal').style.display = 'block';
     }
@@ -266,11 +262,24 @@
       document.getElementById('contactModal').style.display = 'none';
     }
     
-    // Close modal when clicking outside modal content
+    // About Modal Functions
+    function openAboutModal() {
+      document.getElementById('aboutModal').style.display = 'block';
+    }
+    
+    function closeAboutModal() {
+      document.getElementById('aboutModal').style.display = 'none';
+    }
+    
+    // Close modals when clicking outside modal content
     window.addEventListener('click', function(event) {
-      const modal = document.getElementById('contactModal');
-      if (event.target === modal) {
+      const contactModal = document.getElementById('contactModal');
+      const aboutModal = document.getElementById('aboutModal');
+      if (event.target === contactModal) {
         closeModal();
+      }
+      if (event.target === aboutModal) {
+        closeAboutModal();
       }
     });
     
